@@ -1,25 +1,22 @@
-version: '3.8'
-
 services:
   app:
     build:
-      context: .
+      context: .      # Контекстом є поточна директорія
     ports:
-      - "3000:3000"
+      - "3000:3000"   # Проброс порту для Flask
     volumes:
-      - .:/app
+      - .:/app        # Прив'язка локальної директорії до контейнера
     depends_on:
-      - mongodb
-
-  mongodb:
+      - mongo         # Залежність від MongoDB
+  mongo:
     image: mongo:6.0
-    container_name: mongodb
     ports:
-      - "27017:27017"
+      - "27017:27017" # Проброс порту для MongoDB
     volumes:
       - mongo_data:/data/db
 
 volumes:
   mongo_data:
+
 
 

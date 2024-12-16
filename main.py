@@ -1,4 +1,4 @@
-from flask import Flask, render_tempalte, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory
 from multiprocessing import Process
 import socket
 import datetime
@@ -18,7 +18,7 @@ collection = db["messages"]
 # HTTP server routes
 @app.route('/')
 def index():
-    return render_tempalte('index.html')
+    return render_template('index.html')
 
 
 @app.route('/message', methods=['GET', 'POST'])
@@ -27,8 +27,8 @@ def message():
         username = request.form['username']
         message_text = request.form['message']
         send_to_socket(username, message_text)
-        return render_tempalte('message.html', success=True)
-    return render_tempalte('message.html')
+        return render_template('message.html', success=True)
+    return render_template('message.html')
 
 
 @app.route('/static/<path:filename>')
@@ -38,7 +38,7 @@ def static_files(filename):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_tempalte('error.html'), 404
+    return render_template('error.html'), 404
 
 
 #Функція для відправки даних 

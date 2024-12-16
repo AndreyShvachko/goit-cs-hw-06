@@ -1,12 +1,13 @@
 FROM python:3.10-slim
 
-WORKDIR /app
+WORKDIR /app  
 
-COPY . /app
+COPY . /app   
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install flask pymongo  
 
-EXPOSE 3000
+EXPOSE 3000  
 
-CMD ["python", "main.py"]
+CMD ["python", "main.py"]  
+
 
